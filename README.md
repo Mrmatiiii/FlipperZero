@@ -1,2 +1,1 @@
-# Flipper_Zero_Badusb_hack5_payloads
-hack5 badusb payloads moded for be played with flipper zero
+# A Collection Of Scripts for the USB Rubber Ducky and the Flipper Zero
