@@ -1,0 +1,165 @@
+import os
+from dataclasses import dataclass, field
+from SCons.Node import NodeList
+from SCons.Warnings import warn, WarningOnByDefault
+
+
+Import("ENV")
+
+from fbt.appmanifest import FlipperAppType
+
+appenv = ENV["APPENV"] = ENV.Clone(
+    tools=[
+        "fbt_extapps",
+        "fbt_assets",
+        "fbt_sdk",
+    ]
+)
+
+appenv.Replace(
+    LINKER_SCRIPT=appenv.subst("$APP_LINKER_SCRIPT"),
+)
+
+appenv.AppendUnique(
+    CCFLAGS=[
+        "-ggdb3",
+        "-mword-relocations",
+        "-mlong-calls",
+        "-fno-common",
+        "-nostdlib",
+        "-fvisibility=hidden",
+    ],
+    LINKFLAGS=[
+        "-Ur",
+        "-Wl,-Ur",
+        # "-Wl,--orphan-handling=error",
+        "-Bsymbolic",
+        "-nostartfiles",
+        "-mlong-calls",
+        "-fno-common",
+        "-nostdlib",
+        "-Wl,--gc-sections",
+        "-Wl,--no-export-dynamic",
+        "-fvisibility=hidden",
+        "-Wl,-e${APP_ENTRY}",
+        "-Xlinker",
+        "-Map=${TARGET}.map",
+        "-specs=nano.specs",
+        "-specs=nosys.specs",
+    ],
+    LIBS=[
+        "m",
+        "gcc",
+        "stdc++",
+        "supc++",
+    ],
+)
+
+
+@dataclass
+class FlipperExtAppBuildArtifacts:
+    applications: dict = field(default_factory=dict)
+    resources_dist: NodeList = field(default_factory=NodeList)
+    sdk_tree: NodeList = field(default_factory=NodeList)
+
+
+apps_to_build_as_faps = [
+    FlipperAppType.PLUGIN,
+    FlipperAppType.EXTERNAL,
+]
+if appenv["DEBUG_TOOLS"]:
+    apps_to_build_as_faps.append(FlipperAppType.DEBUG)
+
+known_extapps = [
+    app
+    for apptype in apps_to_build_as_faps
+    for app in appenv["APPBUILD"].get_apps_of_type(apptype, True)
+]
+
+# Ugly access to global option
+if extra_app_list := GetOption("extra_ext_apps"):
+    known_extapps.extend(map(appenv["APPMGR"].get, extra_app_list.split(",")))
+
+for app in known_extapps:
+    if not any(map(lambda t: t in app.targets, ["all", appenv.subst("f${TARGET_HW}")])):
+        warn(
+            WarningOnByDefault,
+            f"Can't build '{app.name}' (id '{app.appid}'): target mismatch"
+            f" (building for {appenv.subst('f${TARGET_HW}')}, app supports {app.targets}",
+        )
+        continue
+
+    appenv.BuildAppElf(app)
+
+
+if appenv["FORCE"]:
+    appenv.AlwaysBuild(
+        list(app_artifact.compact for app_artifact in appenv["EXT_APPS"].values())
+    )
+
+
+Alias(
+    "faps", list(app_artifact.validator for app_artifact in appenv["EXT_APPS"].values())
+)
+
+extapps = FlipperExtAppBuildArtifacts()
+extapps.applications = appenv["EXT_APPS"]
+extapps.resources_dist = appenv.FapDist(appenv.Dir("#/assets/resources/apps"), [])
+
+if appsrc := appenv.subst("$APPSRC"):
+    app_artifacts = appenv.GetExtAppFromPath(appsrc)
+    appenv.PhonyTarget(
+        "launch_app",
+        '${PYTHON3} "${APP_RUN_SCRIPT}" --launch "${SOURCE}" --fap_dst_dir "/ext/apps/${FAP_CATEGORY}"',
+        source=app_artifacts.compact,
+        FAP_CATEGORY=app_artifacts.app.fap_category,
+    )
+    appenv.Alias("launch_app", app_artifacts.validator)
+
+appenv.PhonyTarget(
+    "faps_copy",
+    os.linesep.join(
+        [
+            '${PYTHON3} "${APP_RUN_SCRIPT}"'
+            f' "{app_artifact.compact[0].rstr()}"'
+            f' --fap_dst_dir "/ext/apps/{app_artifact.app.fap_category}"'
+            for app_artifact in appenv["EXT_APPS"].values()
+        ]
+    ),
+    source=["faps"],
+)
+
+# SDK management
+
+sdk_origin_path = "${BUILD_DIR}/sdk_origin"
+sdk_source = appenv.SDKPrebuilder(
+    sdk_origin_path,
+    # Deps on root SDK headers and generated files
+    (appenv["SDK_HEADERS"], appenv["FW_ASSETS_HEADERS"]),
+)
+# Extra deps on headers included in deeper levels
+# Available on second and subsequent builds
+Depends(sdk_source, appenv.ProcessSdkDepends(f"{sdk_origin_path}.d"))
+
+appenv["SDK_DIR"] = appenv.Dir("${BUILD_DIR}/sdk")
+sdk_tree = appenv.SDKTree(appenv["SDK_DIR"], sdk_origin_path)
+# AlwaysBuild(sdk_tree)
+Alias("sdk_tree", sdk_tree)
+extapps.sdk_tree = sdk_tree
+
+sdk_apicheck = appenv.SDKSymUpdater(appenv["SDK_DEFINITION"], sdk_origin_path)
+Precious(sdk_apicheck)
+NoClean(sdk_apicheck)
+AlwaysBuild(sdk_apicheck)
+Alias("sdk_check", sdk_apicheck)
+
+sdk_apisyms = appenv.SDKSymGenerator(
+    "${BUILD_DIR}/assets/compiled/symbols.h", appenv["SDK_DEFINITION"]
+)
+Alias("api_syms", sdk_apisyms)
+
+if appenv["FORCE"]:
+    appenv.AlwaysBuild(sdk_source, sdk_tree, sdk_apicheck, sdk_apisyms)
+
+
+Return("extapps")

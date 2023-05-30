@@ -1,0 +1,41 @@
+App(
+    appid="main_apps",
+    name="Basic applications for main menu",
+    apptype=FlipperAppType.METAPACKAGE,
+    provides=[
+        "Dab_Timer",
+        "fap_loader",
+        "subghz",
+        "SubGHz_Remote",
+        "SubGHz_Playlist",
+        "lfrfid",
+        "nfc",
+        "infrared",
+        "IR_Remote",
+        "GPIO",
+        "iButton",
+        "bad_usb",
+        "u2f",
+        "CFW",
+        "archive",
+        # "Spectrum_Analyzer",
+    ],
+)
+
+App(
+    appid="main_apps_default",
+    name="Basic applications for main menu",
+    apptype=FlipperAppType.METAPACKAGE,
+    provides=[
+        #"gpio",
+        #"iButton",
+        #"infrared",
+        "lfrfid",
+        "nfc",
+        "subghz",
+        "bad_usb",
+        #"u2f",
+        "fap_loader",
+        "archive",
+    ],
+)
