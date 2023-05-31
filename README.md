@@ -2,7 +2,7 @@
 # FlipperZero
 All In One Flipper Zero Database
 
-Slowly but surely adding More, If You need help with something add me on Discord IntX0#8473
+Slowly but Surely Adding More, If You Have Questions About Something Add Me On Discord IntX0#8473
 
 # Want to help?
 Fork and add what your going to add and do a pull request
