@@ -5,7 +5,7 @@ All In One Flipper Zero Database
 Slowly but Surely Adding More, If You Have Questions About Something Add Me On Discord IntX0#8473
 
 # Want to help?
-Fork and add what your going to add and do a pull request
+Fork and add what you want to add and do a pull request
 
 # QFlipper PC APP
 ## [Desktop application for updating Flipper Zero firmware via PC](https://flipperzero.one/update)
