@@ -1,0 +1,7 @@
+https://shop.flipperzero.one/collections/flipper-zero-accessories/products/wifi-devboard
+
+|-https://www.amazon.com/ESP8266-ESP-12E-Connector-Development-Micropython/dp/B0B24PGGCV/ref=sr_1_15?adgrpid=1330409641921008&hvadid=83150817085703&hvbmt=be&hvdev=c&hvlocphy=79444&hvnetw=o&hvqmt=e&hvtargid=kwd-83150962451588%3Aloc-190&hydadcr=18005_13443552&keywords=esp8266+nodemcu&qid=1685325029&sr=8-15
+|-https://shop.flipperzero.one/collections/flipper-zero-accessories/products/proto-boards
+
+ESP8266 How-To's  https://www.flipperdevice.com/2023/02/soldering-an-esp8266-chip-on-a-pcb-for-the-flipper-zero/ 
+		  https://www.youtube.com/watch?v=CKK7t0TaRVQ
