@@ -8,3 +8,10 @@ sub: /ext/subghz/Vehicles/Tesla/433b_Tesla_Captured_EU_AUS.sub
 sub: /ext/subghz/Vehicles/Tesla/EU_Tesla_S3X.sub
 sub: /ext/subghz/Vehicles/Tesla/EU_Tesla_Y.sub
 sub: /ext/subghz/Vehicles/Tesla/Tesla_Captured.sub
+sub: /ext/subghz/Vehicles/Tesla/315MHz_AM270_Better_Tesla_Charge_Port_Opener.sub
+sub: /ext/subghz/Vehicles/Tesla/315MHz_AM650_Better_Tesla_Charge_Port_Opener.sub
+sub: /ext/subghz/Vehicles/Tesla/315MHz_AM650_Tesla-Long.sub
+sub: /ext/subghz/Vehicles/Tesla/433.92MHz_AM270_Better_Tesla_Charge_Port_Opener.sub
+sub: /ext/subghz/Vehicles/Tesla/433.92MHz_AM650_Better_Tesla_Charge_Port_Opener.sub
+sub: /ext/subghz/Vehicles/Tesla/433_Tesla-Long_AM650_EU_AUS.sub
+
