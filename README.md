@@ -16,7 +16,7 @@ By downloading and using the scripts provided you are automatically agreeing to 
 3. You are ``allowed`` to modify the files, but are still responsible for your own actions.
 4. If you are using my scripts in your own repo, please consider giving credits.
 5. You are allowed to do everything the license says...
-# Distributed under the `Attribution-NonCommercial-ShareAlike 4.0 International` license. See `LICENSE.md` for more information.
+
 # QFlipper PC APP
 ## [Desktop application for updating Flipper Zero firmware via PC](https://flipperzero.one/update)
 
@@ -44,5 +44,8 @@ By downloading and using the scripts provided you are automatically agreeing to 
 
 # What is this for
 Flipper Zero is a portable multi-tool for pentesters and hardware geeks in a toy-like body. It loves to explore the digital world around: radio protocols, access control systems, hardware, and more. The main idea behind the Flipper Zero is to combine all the research & penetration hardware tools that you could need on the go in a single case. Out of the box, Flipper is filled with features and skills, but also It's open-source and customizable, so you can extend its functionality in whatever way you like, along with the community.
-
 https://flipperzero.one/
+
+# Distributed under the `Attribution-NonCommercial-ShareAlike 4.0 International` license. See `LICENSE.md` for more information.
+
+
