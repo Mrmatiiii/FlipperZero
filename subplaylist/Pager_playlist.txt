@@ -281,11 +281,3 @@ sub: /ext/subghz/Restaurant_Pagers/Retekess_Pagers/TD165/A00.sub
 sub: /ext/subghz/Restaurant_Pagers/Retekess_Pagers/TD165/A01.sub
 sub: /ext/subghz/Restaurant_Pagers/Retekess_Pagers/TD165/E00.sub
 sub: /ext/subghz/Restaurant_Pagers/Retekess_Pagers/TD165/E01.sub
-sub: /ext/subghz/Restaurant_Pagers
-sub: /ext/subghz/Restaurant_Pagers
-sub: /ext/subghz/Restaurant_Pagers
-sub: /ext/subghz/Restaurant_Pagers
-sub: /ext/subghz/Restaurant_Pagers
-sub: /ext/subghz/Restaurant_Pagers
-sub: /ext/subghz/Restaurant_Pagers
-sub: /ext/subghz/Restaurant_Pagers
