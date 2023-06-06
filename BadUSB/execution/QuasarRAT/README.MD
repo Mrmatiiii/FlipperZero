@@ -1,7 +1,7 @@
 # QuasarRAT Exe Execution
 Remote Access and Complete Control Over a Target's Computer
 
-## This Is Not Plug N' Play
+## This Is Not Plug N' Play + It is NOT Completely Finished
 
 Based On https://github.com/UNC0V3R3D/Flipper_Zero-BadUsb/tree/main/BadUsb-Collection/Windows_Badusb/Execution/Invisible_DownExec_Zip_Extract
 <details><summary>Use At Your Own Risk</summary>
@@ -25,3 +25,9 @@ Based On https://github.com/UNC0V3R3D/Flipper_Zero-BadUsb/tree/main/BadUsb-Colle
 3. Edit the Script so that the 'YOUR_GITHUB_RELEASES_PAGE' points to your releases (you need to use https://github.com/YOUR_NAME/YOUR_REPO/releases/latest/download/NAME_OF_EXE.zip)
 4. It is Very Possible for Windows Defender to Detect the Download Depending On the Verison and Settings, I'm In the Process of Combining This With the '\FlipperZeroDB\BadUSB\general\Disable_Windows_Defender' So That Detection Is Less Likely
 5. Make Sure to Start the Listener in Quasar BEFORE Executing the BadUSB attack
+
+
+## Plans For Update
+
+1. Add Capability to Disable WinDefender
+2. Add Clean Up + Safety Nets to Prevent Detection
