@@ -9,11 +9,11 @@ Based On https://github.com/UNC0V3R3D/Flipper_Zero-BadUsb/tree/main/BadUsb-Colle
 </details>
 
 # How Is This Used
-1.) You need QuasarRAT
-2.) Your own GitHub Repo
-3.) A Compiled .exe payload from Quasar
-4.) WinRar or Other File Zipping Program
-5.) FlipperZero or Other BadUSB Device
+1. You need QuasarRAT
+2. Your own GitHub Repo
+3. A Compiled .exe payload from Quasar
+4. WinRar or Other File Zipping Program
+5. FlipperZero or Other BadUSB Device
 
 ## Download Quasar
 * [Latest stable release](https://github.com/quasar/Quasar/releases) (recommended)
