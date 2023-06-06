@@ -22,7 +22,7 @@ Based On https://github.com/UNC0V3R3D/Flipper_Zero-BadUsb/tree/main/BadUsb-Colle
 ## How-To
 1. Build a payload - https://www.youtube.com/watch?v=r2kGu2uYmmw - https://www.youtube.com/watch?v=vH7v0I1l0wc
 2. Upload it to your OWN Github Page under Releases
-3. Edit the Script so that the 'YOUR_GITHUB_RELEASES_PAGE' points to your releases (you need to use https://github.com/YOUR_NAME/YOUR_REPO/releases/latest/download/NAME_OF_EXE.zip)
+3. Edit the Script so that the 'YOUR_GITHUB_RELEASES_PAGE' points to your releases (*https://github.com/YOUR_NAME/YOUR_REPO/releases/latest/download/NAME_OF_EXE.zip*)
 4. It is Very Possible for Windows Defender to Detect the Download Depending On the Verison and Settings, I'm In the Process of Combining This With the '\FlipperZeroDB\BadUSB\general\Disable_Windows_Defender' So That Detection Is Less Likely
 5. Make Sure to Start the Listener in Quasar BEFORE Executing the BadUSB attack
 
