@@ -73,6 +73,6 @@ https://flipperzero.one/
 
 
 
-# Distributed under the `Attribution-NonCommercial-ShareAlike 4.0 International` license. See `LICENSE.md` for more information.
+## Distributed under the `Attribution-NonCommercial-ShareAlike 4.0 International` license. See `LICENSE.md` for more information.
 
 
