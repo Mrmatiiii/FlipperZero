@@ -46,7 +46,7 @@ By downloading and using the scripts provided you are automatically agreeing to 
 Flipper Zero is a portable multi-tool for pentesters and hardware geeks in a toy-like body. It loves to explore the digital world around: radio protocols, access control systems, hardware, and more. The main idea behind the Flipper Zero is to combine all the research & penetration hardware tools that you could need on the go in a single case. Out of the box, Flipper is filled with features and skills, but also It's open-source and customizable, so you can extend its functionality in whatever way you like, along with the community.
 https://flipperzero.one/
 ## Credits
-### There are lots of Repo's with Duplicate Files, Regardless here are the Ones I Personally Combed Over and Curared into This One Place
+### There are lots of Repo's with Duplicate Files. Regardless, Here Are the Ones I Personally Combed Over and Curared into This One Place
 * [UNC0V3R3D] , [UberGuidoZ] , [FalsePhilosopher] , [I-am-Jakoby] , [DarkFlippers] , [Gioman101] , [Djsime1] , [LucasIHM] , [MuddledBox] , [RocketGod-git] , [FroggMaster] , [nonamecoder] , [wetox-team] , [nocomp] , [SHUR1K-N] , [SequoiaSan] , [HEX0DAYS] , [w0lfzk1n] , [curiousqeorqe]
 * Make sure to check them out! They are the reason this repository exists. If you see files You contributed and Didn't Get credit Please Contact Me on Discord IntX0#8473
 
