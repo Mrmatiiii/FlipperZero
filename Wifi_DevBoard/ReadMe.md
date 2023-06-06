@@ -1,156 +1,60 @@
-# Official info
+# FlipperZero PWNDTOOLS / Wifi Board / DEAUTH V2 - ESP8266 for Flipper Zero (Deauth working + attack power upgrading)
 
-The Wifi devboard ships with [Blackmagic firmware](https://github.com/flipperdevices/blackmagic-esp32-s2) installed. The Flipper documentation [is here](https://docs.flipperzero.one/development/hardware/wifi-debugger-module), and Blackmagic is [over here](https://black-magic.org/).
 
-Quick start: Connect to the SSID `blackmagic` using the password `iamwitcher` or plug the wifi devboard in via USB.
 
-[Official schematics](https://docs.flipperzero.one/development/hardware/wifi-debugger-module/schematics) can be found in the Official Flipper docs. A [PDF version](https://github.com/UberGuidoZ/Flipper/blob/main/Wifi_DevBoard/Flipper_Zero_WI-FI_Module_V1_Schematic.PDF) is also available.
+- Many users in the Flipper Zero community have found that using the <a href="https://github.com/SequoiaSan/FlipperZero-Wifi-ESP8266-Deauther-Module">SequoiaSan</a> V1 Deauther tool, the Deauth does not work and other options are not efficent.
+- Here you can find the optimized Version 2.6.0 of the <a href="https://github.com/SequoiaSan/FlipperZero-Wifi-ESP8266-Deauther-Module">original Deauther</a> tool already compiled (.faps) and working for the Flipper Zero plus How-To and more.
+- IMPORTANT : - UPDATED TO LATEST API 8.2 , DOWNLOAD THE LATEST RELEASE FROM [HERE](https://github.com/HEX0DAYS/FlipperZero-PWNDTOOLS/releases/download/V2_api_8.2/ESP8266_Wifi_Deauther_v2.fap) (So just flash old .bin and replace the old .faps with this new one and everything will work on new firmware update too. remod by Timotools.
 
-# ESP32 Wi-Fi Pentest Tool
+# How-TO Flash the Deauther V2.6.0 .bin for the Esp8266 board
 
-Check out [Frog's write-up](https://github.com/FroggMaster/ESP32-Wi-Fi-Penetration-Tool) and build for quick and easy flashing! Seriously, it's basically just a double-click now thanks to some error checking and automation. ([You're welcome!](https://github.com/FroggMaster/ESP32-Wi-Fi-Penetration-Tool/compare/v1.0...v1.1)).
+- Download the official .bin of the Deauther V2.6.0 tool from <a href="https://github.com/HEX0DAYS/FlipperZero-CONVERT/blob/96a9ca4bcb4e93c22d117a1ad27422149cdea6fb/Deauther2.6.0_FZ/esp8266_deauther_2.6.0.bin">HERE</a> , you can use the <a href="https://github.com/SpacehuhnTech/esp8266_deauther/wiki/Installation/70c7169963788c6a00cba1aa5d1939aedd463567#compiling-using-arduino-ide">ArduinoIDE</a> ,<a href="https://github.com/SpacehuhnTech/esp8266_deauther/wiki/Installation/70c7169963788c6a00cba1aa5d1939aedd463567#esptool-gui">Esptool-gui</a> ,Esptool or <a href="https://github.com/SpacehuhnTech/esp8266_deauther/wiki/Installation/70c7169963788c6a00cba1aa5d1939aedd463567)">many others</a> ,below I will show you how to do it with Esptool which is very easy and fast. 
 
-# ESP32 WiFi Scanner Module
+# How-TO Flash the Deauther V2.6.0 .bin for the Esp8266 board using ESPTOOL
 
-Another fun project is from [SequoiaSan](https://github.com/SequoiaSan)! Originally designed for an ESP8266, it has been ported to run on the Flipper Wifi Devboard too.<br>
-Check out the [Release Info](https://github.com/SequoiaSan/FlipperZero-WiFi-Scanner_Module) and [Install Instructions](https://github.com/SequoiaSan/Guide-How-To-Upload-bin-to-ESP8266-ESP32) direct from the source. (Some pinout info is included there and on my [GPIO page](https://github.com/UberGuidoZ/Flipper/tree/main/GPIO).)
+After download the V2 Deauther .bin we need to flash it on the Esp8266 via a single command. Just plug the USB Cable from Esp8266 to Computer and then launch this command from Esptool.
 
-Sequoia has been kind enough to create a [web flasher](https://sequoiasan.github.io/FlipperZero-WiFi-Scanner_Module/) if you want to avoid the Arduino IDE.
+- Using the NodeMCU (or any similar development board), the flash location is 0x0000 and the mode is dout.
 
-# ESP8266 WiFi Deauther Module (not devboard...)
+<b>esptool.py -p /dev/ttyUSB0 write_flash -fm dout 0x0000 esp8266_deauther_2.6.0.bin</b> or 
 
-Yet another fun project is from [SequoiaSan](https://github.com/SequoiaSan)! Only working/designed for an ESP8266, but porting it to run on the Flipper Wifi Devboard is a WIP.<br>
-Check out the [Release Info](https://github.com/SequoiaSan/FlipperZero-Wifi-ESP8266-Deauther-Module) and [Install Instructions](https://github.com/SequoiaSan/FlipperZero-Wifi-ESP8266-Deauther-Module#how-to) direct from the source. (Some pinout info is included there and on my [GPIO page](https://github.com/UberGuidoZ/Flipper/tree/main/GPIO).)
+<b>esptool -p /dev/ttyUSB0 write_flash -fm dout 0x0000 esp8266_deauther_2.6.0.bin</b>
 
-![Options](https://user-images.githubusercontent.com/57457139/182688601-49385919-857b-4d73-b9d7-d06cbe4a4d1f.png)
+Where /dev/ttyUSB0 is the COM port of your device, write_flash is telling the program to write to flash memory, -fm dout is the flash mode and esp8266_deauther_2.6.0.bin is the name of your .bin file. if you get an error with this command, just enter your serial port replaced to /dev/ttyUSB0 , you can use <a href="https://www.uwe-sieber.de/usbtreeview_e.html#download">UsbTreeView</a> for see all the serial ports are connected via USB, after you have your COM port, just replace /dev/ttyUSB0 with your COM port, Ex COM1, COM2, COM3, COM4, COM5. And then Launch the command and wait for the flashing end
 
-Sequoia has been kind enough to create a [web flasher](https://sequoiasan.github.io/FlipperZero-Wifi-ESP8266-Deauther-Module/). Once you've gotten things flashed, here's some quick instructions [from Discord](https://discord.com/channels/937479784148115456/978425715525582918/1004397635098120274) for accessing the Web Interface: Connect to the SSID `pwned` with the password of `deauther` then use a browser to go to http://192.168.4.1
+# We  need now to transfer the .faps on the flipper and everything will work
 
-# ESP8266 WiFi Deauther v2 (not devboard...)
+- You can download the updated to api 6.1 Deauther V2.6.0+ .faps from <a href="https://github.com/HEX0DAYS/FlipperZero-PWNDTOOLS/releases/download/2.6.0%2B/ESP8266_B_Wifi_Deauther.fap">HERE</a> (Already compiled) and put on applications/GPIO/ on the SD-Card of your Flipper Zero. Then plug the SD-card on your flipper, the esp8266 board on the flipper, go on Applications/GPIO and then you can run the version 2.6.0 the Deauther with everything working, <b>IMPORTANT</b> When you open the app, let the Esp8266 finish to scan, wait for the blue LED to go off, once it is off you can click on the other things, otherwise, the app will crash. every time the deauther is started it will start an automatic scan, remember not to touch anything while it does its startup scan.
 
-Another deauther option can be found at [HEX0DAYS repo over here](https://github.com/HEX0DAYS/FlipperZero-PWNDTOOLS)! (Full instructions included.)
+# How to upgrade your Deauther's attacks
 
-# [Marauder](https://github.com/justcallmekoko/ESP32Marauder) install information (easy flash for Windows: [HERE](https://github.com/UberGuidoZ/Flipper/tree/main/Wifi_DevBoard/FZ_Marauder_Flasher))
+- Very simple, we should go and change the settings that we find when we connect via the web to our esp8266.
+First, connect your device to your esp8266 via WiFi, the default password is : <b>deauther</b> once you are connected to your esp8266 via wifi, go to the browser and navigate to <b>192.168.4.1</b> once inside, you will be correctly in the gui of your Deauther, we need two settings.
 
-Direct from the dev WillStunForFood (aka JustCallMeKoko) on Discord - check out [his video walkthrough](https://www.youtube.com/watch?v=_YLTpNo5xa0) too!:
+<img src="./deauther_gui.png">
 
-- Plug the WiFi dev board directly into your PC
-- Upload the MarauderOTA firmware from source via Arduino IDE
-- Use the MarauderOTA firmware to flash the Marauder Flipper bin over WiFi
+- Change Deauthpertarget from 25 to 100 and Deauthreason from 1 to 4 and then click Save.
 
-The first step in the wiki documentation [starts here](https://github.com/justcallmekoko/ESP32Marauder/wiki/flipper-zerowhile).<br>
-(Then you should have the necessary links to the follow on documentation to get the firmware installed.)
+# Screenshoots of current Deauther at work, it seem like the Marauder tool.
 
-ESP32-S2 is the correct board if you are installing on the Flipper WiFi Dev Board. <br>
-If you are using the Marauder OTA method, you shouldn't have to install any libraries. <br>
-The only other thing you should have to install is the boards for the ESP32 in the Arduino IDE and the drivers for the ESP32-S2.
+<img src="./Deauther1.jpg">
 
-You can connect to Marauder in a handful of ways (make sure qFlipper is CLOSED):<br>
-- Through Flipper's USB-C on a computer ([PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) is good for Windows, find the COM port with [USB Device Tree View](https://www.uwe-sieber.de/usbtreeview_e.html).)<br>
-- If you'd rather go direct to the devboard, plug it in directly and give PuTTY a go like above.<br>
-- If you have an Android phone, many have had success with the [Serial USB Terminal](https://play.google.com/store/apps/details?id=de.kai_morich.serial_usb_terminal) app.
+<img src="./Deauther2.jpg">
 
-Commands `channel`, `scanap`, `sniffbeacon`, `sniffdeauth`, `sniffpmkid`, `stopscan`, `clearap`, `ssid`, `update`
+# Wrong API version ? Compile by your own is very easy !
 
-## LED info when using Marauder
+- First of all, let's git all the firmware repo by Unleashed for example, with this command: (USING GIT)
 
-Blue is sniffing<br>
-Red is attacking
+<b>git clone --recursive https://github.com/DarkFlippers/unleashed-firmware.git</b>
 
-------------------------------------------------------------------------------
+- Then add the Deauther V2 Source code in Applications/plugins in the folder we have cloned with git and then let's compile running this command while we are inside the folder (unleashed-firmware) from bash or terminal:
 
-## SSID Command
+<b>./fbt.cmd COMPACT=1 DEBUG=0 updater_package</b>
 
-The `ssid` command is to edit the SSID list used for beacon attacks for when when you're running something like `attack -t beacon -l`<br>
-You can also use something like `ssid -a -g 4` to randomly generate four SSIDs to the list. (Check it with `list -s` to see them!)<br>
-To add an SSID by name, use `ssid -a -n YourSSID` and replace `YourSSID` with the SSID name you would like.<br>
-Lastly, to remove an SSID from the list, use `list -s` then `ssid -r #` replacing # with the number from the list command.
+- Once we have copmpiled, you will found the updater package to upload in flipper inside the unleashed-firmware folder previously extracted on desktop: unleashed-firmware\dist\f7-C\f7-update-local so just move this folder (update-local) on /update folder of your Flipper Zero sd card, then put back the sd card on your Flipper Zero, turn on the Flipper, and click once the arrow down, then the arrow to the left of your Flipper and you will find yourself in the menu, look for the folder /update, enter it, then enter in the folder you will found inside in /update and look for a file called "update", launch this file and your Flipper will turn off to perform the update or change of Firmware, really simple! So you can found your API updated .faps. <b1>**READ**</b1> Before do this operation, remember always to delete first the /apps folder in your Flipper Zero Sd Card and then perform the update. You will found after the update all before apps, updated too if course + the optimized v2 deauther, updated.
 
-There is more to play with regarding ssid commands! From [cococode](https://discord.com/channels/937479784148115456/937489970007003166/1004839175238979625), you can do this:<br>
-1. ssid -a -n (name you want to show)<br>
-2. list -s<br>
-3. select -s (index from list)<br>
-4. attack -t beacon -l<br>
-5. attack -t rickroll
+# Need help? join the Uncensored & Unofficial Flipper Zero Discord Server! Join  <a href="https://discord.gg/MXCfNgwtW7">NOW!</a>
 
-------------------------------------------------------------------------------
+Thanks to @SpacehuhnTech , @JustDr00py and more!
 
-To update the installed FW, you can use the `update -w` option, then follow along from [Step 8 in the install guide](https://github.com/justcallmekoko/ESP32Marauder/wiki/installing-firmware-via-ota).
-
-------------------------------------------------------------------------------
-
-Example Attack Profile ([from Discord](https://discord.com/channels/740930220399525928/967843558520418384/997185157175988264)):
-
-Use command `scanap` stop with `stopscan` when done.
-
-List all found Beacons from previous steps via `list -a`
-
-Note the enumeration of your target Beacon...
-
-Use `select -a x` command to select your target. (x being your target # from previous step)
-
-Execute chosen attack `attack -t deauth`
-
-Use `stopscan` when done.
-
------------------------------------------------------------------------------------ 
-
-Connecting to the devboard with a Mac ([from Discord](https://discord.com/channels/740930220399525928/967843558520418384/998043936977330276))
-
-Open Terminal
-
-Enter ls /dev/tty.*
-
-You will be provided with several USB directories. Select one that has your flippers name in it example: /dev/tty.usbmodemflip_XXXXX3
-
-Add "screen" in the prefix and the baud rate as the suffix to the command after copy pasting.....
-
-screen /dev/tty.usbmodemflip_XXXXX3 115200
-
-Hit reset on the flipper board and you'll see it populate. If it doesn't, simply try the other flipper directory name.
-
------------------------------------------------------------------------------------
-
-# Quick steps from Rabid Root...
-
-![Quick_info](https://user-images.githubusercontent.com/57457139/171563068-4997e28d-ac75-4c22-96b3-9e21fb0cdb18.jpg)<br>
-![Flipper_Settings](https://user-images.githubusercontent.com/57457139/176063404-86cfaa96-4cb5-4a94-a388-f935f59ac7b2.png)
-
-# AND a great step by step from E_Surge!
-
-![More_Steps](https://user-images.githubusercontent.com/57457139/176063439-f23620ae-7985-46eb-a11e-d85d1bcc62b7.png)
-
-Also from E_Surge: "Flashed esp32marauder directly to the esp32-s2 using the esptool command -- wasn't working until a PC restart and boom. But it took about three hours of different methods, attempts, and finally restarting of devices etc."
-
-`esptool -p PORT -b 460800 --before default_reset --after hard_reset --chip esp32s2  write_flash --flash_mode dio --flash_freq 80m --flash_size 4MB 0x10000 esp32_marauder_v0_9_9_20220628_flipper.bin`
-
-# If serial connection looks scrambled... (thanks Frog!)
-![Scrambled](https://user-images.githubusercontent.com/57457139/178117119-01907ac3-e0db-4ab2-b248-1c38e5926693.png)
-
-![Frog_Fix](https://user-images.githubusercontent.com/57457139/178117083-fb209d3e-660a-4cef-b80e-f2e25ed2060e.png)
-
-Frog also noted that it's wise to reflash the Flipper firmware if such issues are persisting.<br>
-Start with the Official firmware, test, then move to a unlocked one if desired.
-
------
-
-## Donation Information
-
-Nothing is ever expected for the hoarding of digital files, creations I have made, or the people I may have helped.
-
-## Ordering from Lab401? [USE THIS LINK FOR 5% OFF!](https://lab401.com/r?id=vsmgoc) (Or code `UberGuidoZ` at checkout.)
-
-I've had so many asking for me to add this.<br>
-![Flipper_Blush](https://user-images.githubusercontent.com/57457139/183561666-4424a3cc-679b-4016-a368-24f7e7ad0a88.jpg) ![Flipper_Love](https://user-images.githubusercontent.com/57457139/183561692-381d37bd-264f-4c88-8877-e58d60d9be6e.jpg)
-
-**BTC**: `3AWgaL3FxquakP15ZVDxr8q8xVTc5Q75dS`<br>
-**BCH**: `17nWCvf2YPMZ3F3H1seX8T149Z9E3BMKXk`<br>
-**ETH**: `0x0f0003fCB0bD9355Ad7B124c30b9F3D860D5E191`<br>
-**LTC**: `M8Ujk52U27bkm1ksiWUyteL8b3rRQVMke2`<br>
-**PayPal**: `uberguidoz@gmail.com`
-
-So, here it is. All donations of *any* size are humbly appreciated.<br>
-![Flipper_Clap](https://user-images.githubusercontent.com/57457139/183561789-2e853ede-8ef7-41e8-a67c-716225177e5d.jpg) ![Flipper_OMG](https://user-images.githubusercontent.com/57457139/183561787-e21bdc1e-b316-4e67-b327-5129503d0313.jpg)
-
-Donations will be used for hardware (and maybe caffeine) to further testing!<br>
-![UberGuidoZ](https://cdn.discordapp.com/emojis/1000632669622767686.gif)
+-B4CKD00OR
