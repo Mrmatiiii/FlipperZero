@@ -5,7 +5,7 @@ Remote Access and Complete Control Over a Target's Computer
 
 Based On https://github.com/UNC0V3R3D/Flipper_Zero-BadUsb/tree/main/BadUsb-Collection/Windows_Badusb/Execution/Invisible_DownExec_Zip_Extract
 <details><summary>Use At Your Own Risk</summary>
- I Am In No Way Responsible For How You Use This
+ * I Am In No Way Responsible For How You Use This *
 </details>
 
 # How Is This Used
